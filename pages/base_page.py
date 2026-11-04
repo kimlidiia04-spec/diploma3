@@ -1,7 +1,8 @@
 import allure
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+from locators.base_page_locators import BasePageLocators
 
 DEFAULT_TIMEOUT = 10
 LONG_TIMEOUT = 30
@@ -18,11 +19,7 @@ fire(arguments[1], 'drop');
 fire(arguments[0], 'dragend');
 """
 
-
 class BasePage:
-
-    CONSTRUCTOR_BUTTON = (By.XPATH, "//p[text()='Конструктор']")
-    ORDER_FEED_BUTTON = (By.XPATH, "//a[@href='/feed']")
 
     def __init__(self, driver):
         self.driver = driver
@@ -76,8 +73,8 @@ class BasePage:
 
     @allure.step("Нажать «Конструктор»")
     def click_constructor(self):
-        self.click(self.CONSTRUCTOR_BUTTON)
+        self.click(BasePageLocators.CONSTRUCTOR_BUTTON)
 
     @allure.step("Нажать «Лента заказов»")
     def click_order_feed(self):
-        self.click(self.ORDER_FEED_BUTTON)
+        self.click(BasePageLocators.ORDER_FEED_BUTTON)
